@@ -163,6 +163,7 @@ height:50px;
 top:60px;
 right:50px;
 }
+
 }
 
 </style>
@@ -183,8 +184,6 @@ Cuartel V - Zona III
 <div id="pie-direccion">
 Dirección General de Proyectos de Hábitat, Vivienda e Integración Urbana
 </div>
-
-
 
 <div id="map">
 
@@ -257,10 +256,46 @@ view.setCenter(center);
 
 window.addEventListener("load", ajustarMapaMovil);
 
+
+/* OCULTAR FLECHA NORTE CUANDO SE ABRE LA LEYENDA EN MOVIL */
+
+function controlarFlechaMovil(){
+
+if (window.innerWidth <= 768){
+
+var flecha = document.getElementById("flecha-norte");
+var boton = document.querySelector(".layer-switcher button");
+
+if(!boton) return;
+
+boton.addEventListener("click", function(){
+
+setTimeout(function(){
+
+var panel = document.querySelector(".layer-switcher");
+
+if(panel.classList.contains("shown")){
+flecha.style.display = "none";
+}else{
+flecha.style.display = "block";
+}
+
+},200);
+
+});
+
+}
+
+}
+
+window.addEventListener("load", controlarFlechaMovil);
+
 </script>
 
 </body>
 </html>
+
+
 
 
 
